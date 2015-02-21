@@ -41,8 +41,8 @@ void ofApp::keyPressed(int key){
     if(key == 'c') {
         float r = ofRandom(1, 70);
         circles.push_back(ofPtr<ofxBox2dCircle>(new ofxBox2dCircle));
-        circles.back().get()->setPhysics(3.0, 0.53, 0.1);
-        circles.back().get()->setup(box2d.getWorld(), mouseX, mouseY, r);
+        circles.back().get()->setPhysics(3.0, ofRandom(0,1.5), 360);
+        circles.back().get()->setup(box2d.getWorld(), ofRandom(0,1024), ofRandom(0,768), r);
         
     }
     // bキーで四角を追加
