@@ -1,3 +1,3 @@
 # something_box2d_
-Blinking random balls with mouseover &amp;  press"c"key
+Blinking random balls with press"c"key
 
