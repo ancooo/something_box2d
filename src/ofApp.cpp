@@ -12,15 +12,29 @@ void ofApp::setup(){
     box2d.createBounds();       // 画面の周囲に壁を作成
     box2d.setFPS(30.0);         // box2Dの世界でのFPS
     box2d.registerGrabbing();   // 物体をつかめるようにする
+    
+    //  ground
+    box2d.registerGrabbing();
+    box2d.createGround(400, 100, 9000, 100);
+    groundLine.addVertex(100, 400);
+    groundLine.addVertex(540, 400);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
     box2d.update();             // box2Dの更新
+    float r = ofRandom(1, 70);
+    circles.push_back(ofPtr<ofxBox2dCircle>(new ofxBox2dCircle));
+    circles.back().get()->setPhysics(3.0, ofRandom(0,1.5), 360);
+    circles.back().get()->setup(box2d.getWorld(), ofRandom(0,1024), ofRandom(-200,0), r);
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    //  draw the ground
+    ofSetColor(255, 255, 255);
+    groundLine.draw();
+    
     // 円を描画
     for(int i=0; i<circles.size(); i++) {
         ofFill();
@@ -38,13 +52,10 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     // cキーで円を追加
-    if(key == 'c') {
-        float r = ofRandom(1, 70);
-        circles.push_back(ofPtr<ofxBox2dCircle>(new ofxBox2dCircle));
-        circles.back().get()->setPhysics(3.0, ofRandom(0,1.5), 360);
-        circles.back().get()->setup(box2d.getWorld(), ofRandom(0,1024), ofRandom(0,768), r);
+    //if(key == 'c') {
+
         
-    }
+    //}
     // bキーで四角を追加
     if(key == 'b') {
         float w = ofRandom(4, 20);

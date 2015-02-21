@@ -20,6 +20,8 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
+    ofPolyline groundLine;
+    
     ofxBox2d box2d;                             // Box2Dの世界
     vector <ofPtr<ofxBox2dCircle> >	circles;    // 円の配列
     vector <ofPtr<ofxBox2dRect> > boxes;        // 四角の配列
